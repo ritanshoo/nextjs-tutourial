@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+// add bootstrap css 
+import 'bootstrap/dist/css/bootstrap.css'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* <header>root layout</header> */}
       <body className={inter.className}>{children}</body>
     </html>
   );
