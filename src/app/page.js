@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from 'next/link'
-
+import LoginForm from "./components/Form";
 
 export default function Home() {
   /**
@@ -50,12 +50,12 @@ dependencies: An optional array of values. The effect runs again only when one o
 
 
 
-  useEffect(() => {
-    console.log("CHANGED", name)
-    if (name === "Ritanshu") {
-      alert("Ritanshu is here ")
-    }
-  }, [name])
+  // useEffect(() => {
+  //   console.log("CHANGED", name)
+  //   if (name === "Ritanshu") {
+  //     alert("Ritanshu is here ")
+  //   }
+  // }, [name])
 
 
   // setInterval(()=>{},3000)
@@ -99,13 +99,15 @@ dependencies: An optional array of values. The effect runs again only when one o
       <div className="container">
         <div className="row input-group mb-3">
           <div className="col-6 m-auoo input-group-prepend">
-            <input onKeyUp={(e) => {
+            {/* <input onKeyUp={(e) => {
               handleInput(e)
-            }} type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+            }} type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" /> */}
           </div>
         </div>
         <div className="row input-group mb-3">
-          {name}
+          <div>
+            <LoginForm />
+          </div>
         </div>
 
       </div>
