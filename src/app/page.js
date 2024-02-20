@@ -25,7 +25,7 @@ initialValue: Sets the initial state when the component is created
 
    * 
    */
-  let [name, setName] = useState("");
+  let [name, setName] = useState("nupur");
   const [time, settime] = useState();
   // useEffect(function,depende)
 
@@ -95,7 +95,9 @@ dependencies: An optional array of values. The effect runs again only when one o
 
   return (
     <main className={styles.main}>
-      <Link href="/dashboard">Dashboard</Link>
+      
+      <Link href="/dashboard">Dashboard</Link> &nbsp;
+      <Link href="/users">Users</Link>
       <div className="container">
         <div className="row input-group mb-3">
           <div className="col-6 m-auoo input-group-prepend">
@@ -109,7 +111,7 @@ dependencies: An optional array of values. The effect runs again only when one o
             <LoginForm />
           </div>
         </div>
-
+        {name}
       </div>
     </main>
   );
