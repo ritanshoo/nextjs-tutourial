@@ -5,6 +5,9 @@ import Link from 'next/link'
 import Nav from 'react-bootstrap/Nav';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import UserCard from '../components/UserCard';
 
 export default function page() {
   const getUsersAPI = 'https://jsonplaceholder.typicode.com/users';
@@ -55,7 +58,28 @@ export default function page() {
       </div>
       {/* {JSON.stringify(users)} */}
       <div className='container mt-4'>
+        <div className='row g-2'>
         {
+          users.length > 0 ?
+            <>
+              {
+                users.map((user, index) => {
+                  // const { id, name, username, website } = user
+                  return (
+                   <UserCard user={user}/>
+                  )
+                })
+              }
+            </>
+            :
+            <div>
+              Loading
+            </div>
+        }
+        </div>
+        
+
+        {/* {
           loading ? "Loading" :
             <Table striped bordered hover>
               <thead>
@@ -91,7 +115,7 @@ export default function page() {
                 }
               </tbody>
             </Table>
-        }
+        } */}
       </div>
     </div>
   )
