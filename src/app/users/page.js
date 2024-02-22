@@ -10,13 +10,18 @@ export default function page() {
   const getUsersAPI = 'https://jsonplaceholder.typicode.com/users';
 
   const [users, setusers] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   const getUsers = async () => {
     try {
+      setLoading(true)
       const response = await axios.get(getUsersAPI);
+
       if (response.data) {
         console.log(response)
         const users = response.data;
+        setLoading(false)
+
         setusers(users)
       }
     } catch (error) {
@@ -50,38 +55,43 @@ export default function page() {
       </div>
       {/* {JSON.stringify(users)} */}
       <div className='container mt-4'>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              users.length > 0 ?
-                <>
-                  {
-                    users.map((user,index) => {
-                      const { id, name, username, website } = user
-                      return (
-                        <tr key={index}>
-                          <td>{id}</td>
-                          <td>{name}</td>
-                          <td>{username}</td>
-                          <td>{website}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </>
-                :
-                null
-            }
-          </tbody>
-        </Table>
+        {
+          loading ? "Loading" :
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Website</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  users.length > 0 ?
+                    <>
+                      {
+                        users.map((user, index) => {
+                          const { id, name, username, website } = user
+                          return (
+                            <tr key={index}>
+                              <td>{id}</td>
+                              <td>{name}</td>
+                              <td>{username}</td>
+                              <td>{website}</td>
+                            </tr>
+                          )
+                        })
+                      }
+                    </>
+                    :
+                    <div>
+                      Loading
+                    </div>
+                }
+              </tbody>
+            </Table>
+        }
       </div>
     </div>
   )
