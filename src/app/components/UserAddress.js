@@ -1,8 +1,12 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Card from 'react-bootstrap/Card';
+import { APP_CONTEXT } from '../users/page';
 
 export default function UserAddress(props) {
-    const { address, company } = props
+
+    const user = useContext(APP_CONTEXT);
+
+    const { address, company } = user
     const {city,zipcode,street,suite} = address;
 
     const {catchPhrase,bs} = company;

@@ -1,6 +1,6 @@
 // Client Side Component
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createContext } from 'react'
 import Link from 'next/link'
 import Nav from 'react-bootstrap/Nav';
 import Table from 'react-bootstrap/Table';
@@ -8,6 +8,8 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import UserCard from '../components/UserCard';
+
+export const APP_CONTEXT = createContext([]);
 
 export default function page() {
   const getUsersAPI = 'https://jsonplaceholder.typicode.com/users';
@@ -59,25 +61,27 @@ export default function page() {
       {/* {JSON.stringify(users)} */}
       <div className='container mt-4'>
         <div className='row g-2'>
-        {
-          users.length > 0 ?
-            <>
-              {
-                users.map((user, index) => {
-                  // const { id, name, username, website } = user
-                  return (
-                   <UserCard user={user}/>
-                  )
-                })
-              }
-            </>
-            :
-            <div>
-              Loading
-            </div>
-        }
+          {
+            users.length > 0 ?
+              <>
+                {
+                  users.map((user, index) => {
+                    // const { id, name, username, website } = user
+                    return (
+                      <APP_CONTEXT.Provider value={user}>
+                        <UserCard />
+                      </APP_CONTEXT.Provider>
+                    )
+                  })
+                }
+              </>
+              :
+              <div>
+                Loading
+              </div>
+          }
         </div>
-        
+
 
         {/* {
           loading ? "Loading" :
@@ -118,5 +122,6 @@ export default function page() {
         } */}
       </div>
     </div>
+
   )
 }

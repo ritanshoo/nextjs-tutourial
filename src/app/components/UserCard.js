@@ -1,13 +1,20 @@
 "use client";
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import UserAddress from './UserAddress';
+import { APP_CONTEXT } from '../users/page';
+
 
 export default function UserCard(props) {
 
+    const user = useContext(APP_CONTEXT);
 
-    const { user } = props
+    // useEffect(()=>{
+    //     console.log({user})
+    // },[user])
+
+    // const { user } = props
     const { id, name, username, website, address,company } = user
 
 
@@ -24,9 +31,14 @@ export default function UserCard(props) {
                         bulk of the card's content
                     </div>
                 </Card.Text>
-                <UserAddress address={address} company={company}/>
+                <UserAddress/>
                 <Button variant="primary">Go somewhere</Button>
             </Card.Body>
         </Card>
     )
 }
+
+/**
+ * users > UserCard (user) > UserAddress (address,company) > > >  >>> N th child
+ * 
+ */
